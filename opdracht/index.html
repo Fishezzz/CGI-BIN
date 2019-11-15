@@ -1,1 +1,82 @@
-/var/www/html/opdracht/index.html
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+		<script src="index.js"></script>
+		<style>
+			#dataTable {
+				margin: auto;
+			}
+
+			#dataTable td,
+			#dataTable th {
+				width: 100px;
+			}
+		</style>
+
+		<title>Opdracht cgi-bin</title>
+	</head>
+	<body>
+		<div class="jumbotron d-flex justify-content-center">
+			<h1>CGI-BIN-BIn-Bin-bin ...</h1>
+		</div>
+		<div class="container">
+			<div>
+				<form class="form-inline" action="/cgi-bin/opdracht/opdracht.cgi" method="POST">
+					<div class="form-group">
+						<label for="name" class="mr-sm-2 mb-2">Name:</label>
+						<input type="text" class="form-control mb-2 mr-sm-2" id="name" name="name" required />
+					</div>
+					<div class="form-group">
+						<label for="age" class="mr-sm-2 mb-2">Age:</label>
+						<input type="number" class="form-control mb-2 mr-sm-2" id="age" name="age" required />
+					</div>
+					<button type="submit" class="btn btn-primary mb-2">Submit</button>
+				</form>
+				<!-- <form class="form" action="/cgi-bin/test/text.cgi" method="POST">
+					<div class="form-group">
+						<label for="name" class="mr-sm-2 mb-2">Name:</label>
+						<input
+							type="text"
+							class="form-control mb-2 mr-sm-2"
+							id="name"
+							name="name"
+							required
+							size="60"
+							maxlength="80"
+						/>
+					</div>
+					<div class="form-group">
+						<label for="age" class="mr-sm-2 mb-2">Age:</label>
+						<input
+							type="number"
+							class="form-control mb-2 mr-sm-2"
+							id="age"
+							name="age"
+							required
+							size="60"
+							maxlength="80"
+						/>
+					</div>
+					<button type="submit" class="btn btn-primary mb-2">Submit</button>
+				</form> -->
+			</div>
+
+			<div>
+				<table id="dataTable" class="table">
+					<tr class="thead-light">
+						<th>Name</th>
+						<th>Age</th>
+						<th>Timestamp</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>
