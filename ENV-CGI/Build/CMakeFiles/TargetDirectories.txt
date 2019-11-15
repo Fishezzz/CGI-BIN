@@ -1,0 +1,3 @@
+/usr/lib/cgi-bin/ENV-CGI/Build/CMakeFiles/rebuild_cache.dir
+/usr/lib/cgi-bin/ENV-CGI/Build/CMakeFiles/ENV-CGI.dir
+/usr/lib/cgi-bin/ENV-CGI/Build/CMakeFiles/edit_cache.dir

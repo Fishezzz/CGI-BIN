@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/usr/lib/cgi-bin/ENV-CGI/env-cgi.c
+
+/usr/lib/cgi-bin/ENV-CGI/hello-world.c
+stdio.h
+-
+stdlib.h
+-
+
