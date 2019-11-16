@@ -1,4 +1,3 @@
-#define __STDC_WANT_LIB_EXT1__ 1
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -92,13 +91,16 @@ int main(void)
         else
         {   
             fseek(fp, file_len-2, SEEK_SET);    // -2 voor karakter achter de laatste '}'
-            #ifdef __STDC_LIB_EXT1__
-            fprintf_s(fp, ",\n    {\n        \"timestamp\": %u,\n        \"name\n: \"%s\",\n        \"age\": %i\n    }\n]%i", timestamp, name, age, EOF);
-            #endif
-            // int ch;
-            // while ((ch = fgetc(fp)) != EOF) {
-            //     putchar(ch);
-            // }
+            printf("here<br>");
+            fprintf(fp, ",\n    {\n        \"timestamp\": %u,\n        \"name\n: \"%s\",\n        \"age\": %i\n    }\n]", timestamp, name, age);
+            printf("after<br>");
+            fclose(fp);
+
+            FILE *fp = fopen(DATAFILE,"rwb");
+            int ch;
+            while ((ch = fgetc(fp)) != EOF) {
+                putchar(ch);
+            }
             fclose(fp);
         }
     }
