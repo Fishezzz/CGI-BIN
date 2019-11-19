@@ -52,13 +52,15 @@ int main(void)
     char input[MAXINPUT], data[MAXINPUT];
     long len;
     
-    printf("%s%c%c\n", "Content-Type:text/html;charset=iso-8859-1", 13, 10);
-    printf("<TITLE>Response</TITLE>\n");
+    // printf("%s%c%c\n", "Content-Type:text/html;charset=iso-8859-1", 13, 10);
+    // printf("<TITLE>Response</TITLE>\n");
 
     lenstr = getenv("CONTENT_LENGTH");
     if (lenstr == NULL || sscanf(lenstr, "%ld", &len) != 1 || len > MAXLEN)
     {
-        printf("<P>Error in invocation - wrong FORM probably.</P>");
+        printf("%s%c%c\n", "Content-Type:text/html;charset=iso-8859-1", 13, 10);
+        printf("<TITLE>Response</TITLE>\n");
+        printf("<P>Error in invocation - wrong FORM probably.</P>\n");
     }
     else
     {
@@ -72,36 +74,28 @@ int main(void)
         size_t name_len = strlen(data) - strlen(pLastAmp);
         char name[name_len];
         strncpy(name, data, name_len);
-        printf("Name: %s<br>", name);
 
         int age;
         sscanf(pAge, "age=%i", &age);
-        printf("Age: %i<br>", age);
         #pragma endregion UberStringPicker9000
 
         unsigned timestamp = (unsigned)time(NULL);
-        printf("Time: %u<br>", timestamp);
         
         unsigned long file_len = fsize(DATAFILE);
-        FILE *fp = fopen(DATAFILE,"rwb");
+        FILE *fp = fopen(DATAFILE,"r+");
         if (!fp)
         {
+            printf("%s%c%c\n", "Content-Type:text/html;charset=iso-8859-1", 13, 10);
+            printf("<TITLE>Response</TITLE>\n");
             printf("File opening failed<br>");
         }
         else
         {   
-            fseek(fp, file_len-2, SEEK_SET);    // -2 voor karakter achter de laatste '}'
-            printf("here<br>");
-            fprintf(fp, ",\n    {\n        \"timestamp\": %u,\n        \"name\n: \"%s\",\n        \"age\": %i\n    }\n]", timestamp, name, age);
-            printf("after<br>");
+            fseek(fp, file_len-3, SEEK_SET);    // -2 voor karakter achter de laatste '}'
+            fprintf(fp, "},\n    {\n        \"timestamp\": %u,\n        \"name\": \"%s\",\n        \"age\": %i\n    }\n]", timestamp, name, age);
             fclose(fp);
-
-            FILE *fp = fopen(DATAFILE,"rwb");
-            int ch;
-            while ((ch = fgetc(fp)) != EOF) {
-                putchar(ch);
-            }
-            fclose(fp);
+            printf("Location: ../../opdracht/\n");
+            printf("%s%c%c", "Content-Type:text/html;charset=iso-8859-1\n", 13, 10);
         }
     }
 
