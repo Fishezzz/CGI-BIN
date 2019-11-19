@@ -52,13 +52,12 @@ int main(void)
     char input[MAXINPUT], data[MAXINPUT];
     long len;
     
-    // printf("%s%c%c\n", "Content-Type:text/html;charset=iso-8859-1", 13, 10);
+	printf("%s%c%c", "Content-Type:text/html;charset=iso-8859-1\n", 13, 10);
     // printf("<TITLE>Response</TITLE>\n");
 
     lenstr = getenv("CONTENT_LENGTH");
     if (lenstr == NULL || sscanf(lenstr, "%ld", &len) != 1 || len > MAXLEN)
     {
-        printf("%s%c%c\n", "Content-Type:text/html;charset=iso-8859-1", 13, 10);
         printf("<TITLE>Response</TITLE>\n");
         printf("<P>Error in invocation - wrong FORM probably.</P>\n");
     }
@@ -85,9 +84,8 @@ int main(void)
         FILE *fp = fopen(DATAFILE,"r+");
         if (!fp)
         {
-            printf("%s%c%c\n", "Content-Type:text/html;charset=iso-8859-1", 13, 10);
             printf("<TITLE>Response</TITLE>\n");
-            printf("File opening failed<br>");
+            printf("<P>File opening failed</P>\n");
         }
         else
         {   
@@ -95,7 +93,6 @@ int main(void)
             fprintf(fp, "},\n    {\n        \"timestamp\": %u,\n        \"name\": \"%s\",\n        \"age\": %i\n    }\n]", timestamp, name, age);
             fclose(fp);
             printf("Location: ../../opdracht/\n");
-            printf("%s%c%c", "Content-Type:text/html;charset=iso-8859-1\n", 13, 10);
         }
     }
 
