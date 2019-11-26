@@ -3,8 +3,6 @@ fetch('./data.json')
         return response.json();
     })
     .then(result => {
-        // Work with JSON data here
-        console.log(result);
         fillTable(result);
     })
     .catch(err => {
